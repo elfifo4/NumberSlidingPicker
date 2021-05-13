@@ -51,6 +51,7 @@ class NumberPicker @JvmOverloads constructor(
     private lateinit var tracker: Tracker
 
     private var arrowStyle: Int
+    private var arrowDrawable: Int
     private var editTextStyleId: Int
     private var tooltipStyleId: Int
 
@@ -169,6 +170,7 @@ class NumberPicker @JvmOverloads constructor(
             val orientation = array.getInteger(R.styleable.NumberPicker_picker_orientation, LinearLayout.VERTICAL)
             val value = array.getInteger(R.styleable.NumberPicker_android_progress, 0)
             arrowStyle = array.getResourceId(R.styleable.NumberPicker_picker_arrowStyle, 0)
+            arrowDrawable = array.getResourceId(R.styleable.NumberPicker_picker_arrowDrawable, R.drawable.arrow_up_selector_24)
             background = array.getDrawable(R.styleable.NumberPicker_android_background)
             editTextStyleId = array.getResourceId(R.styleable.NumberPicker_picker_editTextStyle, R.style.NumberPicker_EditTextStyle)
             tooltipStyleId = array.getResourceId(R.styleable.NumberPicker_picker_tooltipStyle, R.style.NumberPicker_ToolTipStyle)
@@ -212,7 +214,7 @@ class NumberPicker @JvmOverloads constructor(
 
     private fun inflateChildren() {
         upButton = AppCompatImageButton(context)
-        upButton.setImageResource(R.drawable.arrow_up_selector_24)
+        upButton.setImageResource(arrowDrawable)
         upButton.setBackgroundResource(R.drawable.arrow_up_background)
 
         if (data.orientation == HORIZONTAL) {
@@ -229,7 +231,7 @@ class NumberPicker @JvmOverloads constructor(
 
 
         downButton = AppCompatImageButton(context)
-        downButton.setImageResource(R.drawable.arrow_up_selector_24)
+        downButton.setImageResource(arrowDrawable)
         downButton.setBackgroundResource(R.drawable.arrow_up_background)
         downButton.rotation = if (data.orientation == VERTICAL) 180f else -90f
 
